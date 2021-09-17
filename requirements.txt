@@ -1,1 +1,3 @@
-phonenumbers
+python-whois
+csv
+tkinter
