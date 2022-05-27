@@ -7,9 +7,9 @@ from tkinter.filedialog import askopenfilename
 def is_registered(domain_name):
     try:
         w = whois.whois(domain_name)
-        return bool(w.domain_name)
-    except Exception:
-        return False
+        return bool(w)
+    except:
+         return False
 
 # show an "Open" dialog box and return the path to the selected file
 Tk().withdraw() 
@@ -26,13 +26,13 @@ with open(upload_file, 'r') as file:
 # iterate over the uploaded domains
     for domain in data:
         if is_registered(domain):
-            l.append(domain + " is registered") 
+            l.append(domain + " is registered\n") 
         else: 
-            l.append(domain + " is not registered")
+            l.append(domain + " is not registered\n")
 
 # create a new csv file to save the result
-f = open('ready/ready.csv', 'w', newline='')
-writer= csv.writer(f)
+f = open('ready/ready.csv', 'w', newline='\n')
+writer= csv.writer(f,delimiter=' ', escapechar=' ', quoting=csv.QUOTE_NONE)
 writer.writerow(l)
 f.close()
 
